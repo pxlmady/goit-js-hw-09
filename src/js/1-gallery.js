@@ -64,8 +64,10 @@ const images = [
   },
 ];
 
-const galleryContainer = document.querySelector('.gallery');
-let currentInstance = null;
+// Описаний в документації
+import SimpleLightbox from "simplelightbox";
+// Додатковий імпорт стилів
+import "simplelightbox/dist/simple-lightbox.min.css";
 
 // Функція для створення елемента галереї
 function createGalleryItem({ preview, original, description }) {
@@ -80,7 +82,6 @@ function createGalleryItem({ preview, original, description }) {
   image.classList.add('gallery-image');
   image.src = preview;
   image.alt = description;
-  image.dataset.source = original;
 
   link.appendChild(image);
   galleryItem.appendChild(link);
@@ -90,47 +91,13 @@ function createGalleryItem({ preview, original, description }) {
 
 // Функція для створення галереї
 function createGallery(images) {
+  const galleryContainer = document.querySelector('.gallery');
   const galleryItems = images.map(createGalleryItem);
   galleryContainer.append(...galleryItems);
+
+  // Ініціалізація SimpleLightbox після додавання елементів галереї
+  const lightbox = new SimpleLightbox('.gallery a', { captionsData: 'alt', captionDelay: 250 });
 }
-
-// Обробник кліку по галереї
-function onGalleryClick(event) {
-  event.preventDefault();
-
-  const target = event.target;
-  if (target.nodeName !== 'IMG') {
-    return;
-  }
-
-  const largeImageSource = target.dataset.source;
-
-  // Створення модального вікна із слухачами подій
-  currentInstance = basicLightbox.create(`
-    <img src="${largeImageSource}" alt="Large Image">
-  `, {
-    onShow: () => {
-      window.addEventListener('keydown', onKeyPress);
-    },
-    onClose: () => {
-      window.removeEventListener('keydown', onKeyPress);
-      currentInstance = null;
-    }
-  });
-
-  // Показ модального вікна
-  currentInstance.show();
-}
-
-// Обробник натискання клавіші Esc
-function onKeyPress(event) {
-  if (event.code === 'Escape' && currentInstance) {
-    currentInstance.close();
-  }
-}
-
-// Додавання слухача подій до контейнера галереї
-galleryContainer.addEventListener('click', onGalleryClick);
 
 // Створення галереї при завантаженні сторінки
 createGallery(images);
