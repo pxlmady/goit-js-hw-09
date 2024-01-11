@@ -52,11 +52,13 @@
         border-radius: 4px;
       }
 
-      input:hover {
+      input:hover,
+      textarea:hover {
         border: 1px solid #000000;
       }
 
-      input::placeholder {
+      input::placeholder,
+      textarea::placeholder {
         font-family: Montserrat;
         font-size: 16px;
         font-weight: 400;
@@ -66,7 +68,8 @@
         color: white;
       }
 
-      input:focus::placeholder {
+      input:focus::placeholder,
+      textarea:focus::placeholder {
         font-family: Montserrat;
         font-size: 16px;
         font-weight: 400;
@@ -76,7 +79,8 @@
         color: #2e2f42;
       }
 
-      input:focus {
+      input:focus,
+      textarea:focus {
         border: 1px solid #808080;
         outline: none;
       }
@@ -103,6 +107,15 @@
       button:hover {
         background-color: #6c8cff;
       }
+
+      textarea {
+        resize: none;
+        width: 360px;
+        height: 80px;
+        padding: 8px;
+        border: 1px solid #808080;
+        border-radius: 4px;
+      }
     </style>
   </head>
   <body>
@@ -121,7 +134,12 @@
       </label>
       <label>
         Message
-        <textarea name="message" id="messageInput" rows="8"></textarea>
+        <textarea
+          name="message"
+          id="messageInput"
+          rows="8"
+          placeholder="Type area"
+        ></textarea>
       </label>
       <button type="submit">Submit</button>
     </form>
