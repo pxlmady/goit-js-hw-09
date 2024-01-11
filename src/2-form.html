@@ -18,7 +18,7 @@
         margin: 0;
       }
 
-      .login-form {
+      .feedback-form {
         display: flex;
         flex-direction: column;
         gap: 8px;
@@ -26,13 +26,13 @@
         margin: 20px;
       }
 
-      .login-form label {
+      .feedback-form label {
         display: flex;
         flex-direction: column;
         gap: 8px;
       }
 
-      .login-form button {
+      .feedback-form button {
         width: 86px;
         height: 40px;
         margin-top: 16px;
@@ -108,7 +108,7 @@
   <body>
     <p><a href="index.html">Go back</a></p>
 
-    <form class="login-form">
+    <form class="feedback-form">
       <label>
         Email
         <input
@@ -120,14 +120,8 @@
         />
       </label>
       <label>
-        Password
-        <input
-          type="password"
-          name="password"
-          id="passwordInput"
-          autocomplete="current-password"
-          placeholder="Type area"
-        />
+        Message
+        <textarea name="message" id="messageInput" rows="8"></textarea>
       </label>
       <button type="submit">Submit</button>
     </form>

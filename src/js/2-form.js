@@ -4,8 +4,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Зчитування збереженого стану форми при завантаженні сторінки
   const storedState = JSON.parse(localStorage.getItem(storageKey)) || {};
-  form.email.value = storedState.email || '';
-  form.message.value = storedState.message || '';
+  document.getElementById('emailInput').value = storedState.email || '';
+  document.getElementById('messageInput').value = storedState.message || '';
 
   // Відстеження подій input і зберігання значень у локальне сховище
   form.addEventListener('input', function (event) {
@@ -17,11 +17,11 @@ document.addEventListener("DOMContentLoaded", function () {
   form.addEventListener('submit', function (event) {
     event.preventDefault();
 
-    if (form.email.value.trim() && form.message.value.trim()) {
+    if (document.getElementById('emailInput').value.trim() && document.getElementById('messageInput').value.trim()) {
       // Виведення у консоль об'єкта з поточними значеннями
       console.log({
-        email: form.email.value.trim(),
-        message: form.message.value.trim()
+        email: document.getElementById('emailInput').value.trim(),
+        message: document.getElementById('messageInput').value.trim()
       });
 
       // Очищення сховища і полів форми
